@@ -1,5 +1,5 @@
 # couchloader
-
+Load some data into a [Couchbase][1] server
 
 
 ## Description
@@ -27,3 +27,5 @@ $ go get -d github.com/pinterb/couchloader
 ## Author
 
 [pinterb](https://github.com/pinterb)
+
+[1]: http://www.couchbase.com/ 

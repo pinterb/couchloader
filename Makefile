@@ -7,39 +7,42 @@ GIT_USER := $(shell git config --get user.name)
 
 all: build
 
+.PHONY: check.env
 check.env:
 ifndef DOCKER_BIN
    $(error The docker command is not found. Verify that Docker is installed and accessible)
 endif
 
-.build.all: check.env
-	@for image in $(IMAGES); \
-	do \
-	echo " " ; \
-	echo " " ; \
-	echo "Building '$$image' image..." ; \
-	[ -f $(CURRENT_DIR)/$$image/Dockerfile ] && $(DOCKER_BIN) build --rm -t $$image $(CURRENT_DIR)/$$image ; \
-	done
-
-build: docker.gc
+.PHONY: test
+test:
 	$(DOCKER_BIN) run --rm \
 	-v "$(CURRENT_DIR):/src" \
-	centurylink/golang-builder 
+	centurylink/golang-tester
 
-#	pinterb/$(EXE_FILE):$VERSION
-container: docker.gc
+.PHONY: build
+build: test
+	$(DOCKER_BIN) run --rm \
+	-v "$(CURRENT_DIR):/src" \
+	centurylink/golang-builder
+
+.PHONY: container
+container: test
 	$(DOCKER_BIN) run --rm \
 	-v "$(CURRENT_DIR):/src" \
 	-v /var/run/docker.sock:/var/run/docker.sock \
-	centurylink/golang-builder
+	centurylink/golang-builder \
+	$(GIT_USER)/$(EXE_FILE):$(VERSION)
 
-refresh: container 
+.PHONY: refresh
+refresh: container
 
+.PHONY: clean
 clean: docker.gc
 	rm -rf $(EXE_FILE)
 
+.PHONY: docker.gc
 docker.gc:
 	for i in `docker ps --no-trunc -a -q`;do docker rm $$i;done
 	docker images --no-trunc | grep none | awk '{print $$3}' | xargs -r docker rmi
 
-.PHONY: check.env build remove refresh clean docker.gc 
+.PHONY: check.env build remove refresh clean docker.gc
