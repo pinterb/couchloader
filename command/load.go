@@ -155,37 +155,37 @@ func LoadDummyData(b *gocb.Bucket) (int, error) {
 		return count, err
 	}
 
-	if _, err := b.Upsert(testOutTwo.Name, &testOutOne, 0); err == nil {
+	if _, err := b.Upsert(testOutTwo.Name, &testOutTwo, 0); err == nil {
 		count++
 	} else {
 		return count, err
 	}
 
-	if _, err := b.Upsert(testOutThree.Name, &testOutOne, 0); err == nil {
+	if _, err := b.Upsert(testOutThree.Name, &testOutThree, 0); err == nil {
 		count++
 	} else {
 		return count, err
 	}
 
-	if _, err := b.Upsert(testOutFour.Name, &testOutOne, 0); err == nil {
+	if _, err := b.Upsert(testOutFour.Name, &testOutFour, 0); err == nil {
 		count++
 	} else {
 		return count, err
 	}
 
-	if _, err := b.Upsert(testOutFive.Name, &testOutOne, 0); err == nil {
+	if _, err := b.Upsert(testOutFive.Name, &testOutFive, 0); err == nil {
 		count++
 	} else {
 		return count, err
 	}
 
-	if _, err := b.Upsert(testOutSix.Name, &testOutOne, 0); err == nil {
+	if _, err := b.Upsert(testOutSix.Name, &testOutSix, 0); err == nil {
 		count++
 	} else {
 		return count, err
 	}
 
-	if _, err := b.Upsert(testOutSeven.Name, &testOutOne, 0); err == nil {
+	if _, err := b.Upsert(testOutSeven.Name, &testOutSeven, 0); err == nil {
 		count++
 	} else {
 		return count, err
