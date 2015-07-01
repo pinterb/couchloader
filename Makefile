@@ -12,6 +12,9 @@ check.env:
 ifndef DOCKER_BIN
    $(error The docker command is not found. Verify that Docker is installed and accessible)
 endif
+ifndef GIT_USER 
+   $(error Missing git user.name.  Set by running 'git config --add user.name xxxxxxx')
+endif
 
 .PHONY: test
 test:
