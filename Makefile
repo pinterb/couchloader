@@ -33,6 +33,11 @@ container: test
 	centurylink/golang-builder \
 	$(GIT_USER)/$(EXE_FILE):$(VERSION)
 
+.PHONY: push 
+push: container 
+	$(DOCKER_BIN) push \
+	$(GIT_USER)/$(EXE_FILE):$(VERSION)
+
 .PHONY: refresh
 refresh: container
 

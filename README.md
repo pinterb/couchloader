@@ -1,10 +1,19 @@
 # couchloader
 Load some data into a [Couchbase][1] server
 
-
 ## Description
+With any database, there are common use cases where out-of-band data needs to be loaded.
+This is a very dumb-downed utility for loading data into a [Couchbase][1] cluster.
+
+**Please note:** This is just some proof-of-concept work.  It's very much pre-Alpha
+code.
 
 ## Usage
+Get to a `shell` prompt:
+
+```bash
+$ couchloader load -http-addr=127.0.0.1:8091 -pass=bucketpassword -bucket=mybucket
+```
 
 ## Install
 
@@ -24,8 +33,33 @@ $ go get -d github.com/pinterb/couchloader
 1. Run `gofmt -s`
 1. Create a new Pull Request
 
+## Building
+When I started this project, I didn't have [Go][3] installed locally.  So I
+decided to try [golang-builder][2] from CenturyLink.  To use this build process
+you'll need a couple of things installed:
+
+- [Docker][4] or [boot2docker][5]
+- [make][6]
+
+Now, let's build:
+
+```bash
+$ make build
+```
+
+Need a container with your build artifact:
+
+```bash
+$ make container
+```
+
 ## Author
 
-[pinterb](https://github.com/pinterb)
+[Brad Pinter](https://github.com/pinterb)
 
-[1]: http://www.couchbase.com/ 
+[1]: http://www.couchbase.com/
+[2]: https://github.com/pinterb/golang-builder
+[3]: http://golang.org/
+[4]: https://docker.com
+[5]: http://boot2docker.io/
+[6]: https://www.gnu.org/software/make/

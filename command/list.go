@@ -1,11 +1,12 @@
 package command
 
 import (
+	"github.com/mitchellh/cli"
 	"strings"
 )
 
 type ListCommand struct {
-	Meta
+	Ui cli.Ui
 }
 
 func (c *ListCommand) Run(args []string) int {

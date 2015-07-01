@@ -1,11 +1,12 @@
 package command
 
 import (
+	"github.com/mitchellh/cli"
 	"strings"
 )
 
 type UnloadCommand struct {
-	Meta
+	Ui cli.Ui
 }
 
 func (c *UnloadCommand) Run(args []string) int {
